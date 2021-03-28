@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as readline from "readline";
 import { OAuth2Client } from "google-auth-library";
 
+//This class checks for a token or checks credentials and prompts for a token
 export class Authorization {
   TOKEN_PATH: any;
   SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];

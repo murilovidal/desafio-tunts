@@ -2,6 +2,7 @@ import { google, sheets_v4 } from "googleapis";
 import { Authorization } from "./authorization.service";
 import * as fs from "fs";
 
+//Instantiates a Google Sheets Service
 export class GoogleSheetsService {
   CRED_PATH: string;
   authorization: Authorization;

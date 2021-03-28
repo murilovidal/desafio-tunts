@@ -12,7 +12,6 @@ This application reads and updates a specific Google Docs Spreadsheet via API to
 dotenv: 8.2.0
 googleapis: 68.0.0
 readline: 1.3.0
-
 ```
 
 And Docker Compose.

@@ -15,6 +15,7 @@ export class GradesSheetDatasource {
     this.googleSheetsService = new GoogleSheetsService();
   }
 
+  //Reads the spreadsheet returned from API and returns the total number of classes on the period.
   public getTotalClasses(): number {
     if (this.spreadsheet.data.values[1]) {
       let textTotalClasses = this.spreadsheet.data.values[1].toString();
@@ -27,6 +28,7 @@ export class GradesSheetDatasource {
     }
   }
 
+  //Pushes the calculated data to the spreadsheet via API
   public async updateSpreadSheet(studentsGradesList: Student[]): Promise<void> {
     console.log("Saving results in the Google Sheets SpreadSheet...");
 
@@ -50,6 +52,7 @@ export class GradesSheetDatasource {
     }
   }
 
+  //Reads the array of students with situation and scoreToPass and shapes it to be pushed via API to the spreadsheet
   private getDataToUpdate(studentsGradesList: Student[]): Array<any> {
     const dataToUpdate = new Array();
 

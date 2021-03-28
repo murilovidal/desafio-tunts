@@ -1,6 +1,9 @@
 import { GradesSheetDatasource } from "../data/datasource/grades-sheet.datasource";
 import { Student } from "../data/entity/student.entity";
 
+//This class represents a grading sistem
+//It consumes an array of students and each respective grades and absences
+//Also, via grades-sheet.datasource it retrieves the total number of classes
 export class Grading {
   gradesSheetDatasource: GradesSheetDatasource;
   totalClasses: number;
@@ -19,7 +22,8 @@ export class Grading {
     this.totalClasses = 0;
   }
 
-  public async updateResults() {
+  //Calls the classes and methods to retrieve, calculate (situation and storeToPass) and push results to spreadsheet
+  public async updateResults(): Promise<void> {
     const studentsGradesList = await this.gradesSheetDatasource.getStudentsSheet();
     this.totalClasses = this.gradesSheetDatasource.getTotalClasses();
     this.getFinalResults(studentsGradesList);
@@ -29,6 +33,7 @@ export class Grading {
     return this.gradesSheetDatasource.updateSpreadSheet(studentsGradesList);
   }
 
+  //Populates an array of students with the calculated situation and scoreToPass
   private getFinalResults(studentsGradesList: Array<Student>): Array<Student> {
     console.log("Calculating results...");
     const updatedStudentsList: Array<Student> = [];
@@ -46,13 +51,15 @@ export class Grading {
     return studentsGradesList;
   }
 
+  //Calculates scoreToPass
   private checkScoreToPass(student: Student): number {
     const scoreToPass = 100 - student.getMeanGrades();
 
     return scoreToPass;
   }
 
-  private checkSituation(student: Student) {
+  //Calculates the situation
+  private checkSituation(student: Student): void {
     const absenceLimit = this.totalClasses / 4;
 
     const meanGrades = student.getMeanGrades();
