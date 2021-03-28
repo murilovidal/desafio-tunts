@@ -1,4 +1,4 @@
-import { Grading } from "./domain/grading.use-case";
+import { Grading } from "./domain/grading-results.use-case";
 require("dotenv").config();
 
 (async () => {
