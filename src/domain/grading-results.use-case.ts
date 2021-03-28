@@ -38,14 +38,11 @@ export class Grading {
     const absenceLimit: number =
       this.gradesSheetDatasource.getTotalClasses() *
       this.PERCENTILE_ABSENCE_LIMIT;
-    console.log(absenceLimit);
 
     studentsGradesList.map((student) => {
       this.checkStudentSituation.checkSituation(student, absenceLimit);
 
       if (student.getSituation() == "Exame Final") {
-        console.log(this.studentGrades.calculateStudentScoreToPass(student));
-
         student.setScoreToPass(
           this.studentGrades.calculateStudentScoreToPass(student)
         );
@@ -53,6 +50,5 @@ export class Grading {
         student.setScoreToPass(0);
       }
     });
-    console.log(studentsGradesList);
   }
 }
